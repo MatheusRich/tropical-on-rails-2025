@@ -57,10 +57,10 @@ end
 assert_equal({type: :number, value: 1}, Interpreter.call("1"))
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
-# pp Interpreter.call("1 + 2 + 3")
-# assert_equal({}, Interpreter.call("1 + 1 + 2"))
 pp Interpreter.call("1 + 2")
 # assert_equal({}, Interpreter.call("1 + 1"))
+# pp Interpreter.call("1 + 2 + 3")
+# assert_equal({}, Interpreter.call("1 + 1 + 2"))
 # pp Interpreter.call("")
 # assert_raises("", Interpreter.call(""))
 # pp Interpreter.call("1 +")
