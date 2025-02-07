@@ -36,8 +36,12 @@ class Parser
   private
 
   def matches?(type)
-    return false if @tokens.empty?
     type === @tokens.first
+  end
+
+  def advance
+    return if @tokens.empty?
+    @tokens.shift
   end
 end
 
