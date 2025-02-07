@@ -26,6 +26,8 @@ How do we go from a AST to code running on the CPU?
 
 Ruby compiles the AST into Bytecode, which is then executed by the VM. So Ruby is in fact a compiled language.
 
+> "Ruby is an interpreter, and it _has_ a compiler."
+
 ![](https://craftinginterpreters.com/image/a-map-of-the-territory/venn.png)
 
 vm lock GVL/GVM: why do we have it? What are the tradeoffs?
