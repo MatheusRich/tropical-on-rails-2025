@@ -9,6 +9,7 @@ end
 class Parser
   def initialize(tokens)
     @tokens = tokens
+    @tree = []
   end
 
   def call
