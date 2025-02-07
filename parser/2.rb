@@ -21,6 +21,8 @@ class Parser
     if matches?(/\+/)
       advance
       expr2 = program
+
+      return {type: :sum, left: expr, right: expr2}
     end
 
     expr
