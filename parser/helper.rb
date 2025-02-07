@@ -8,7 +8,7 @@ def assert_raises(msg)
   begin
     yield
   rescue => exception
-    if exception.message === msg
+    if msg === exception.message
       return
     else
       raise "Expected exception message to be #{msg.inspect} but got #{exception.message.inspect}"
