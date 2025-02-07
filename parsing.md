@@ -58,6 +58,8 @@ In Ruby, that's roughly divided like this
 
 ---
 
+## Writing a parser
+
 Let's imagine a simple language. It only let's you write numbers.
 
 ```rb
@@ -80,6 +82,8 @@ and this one is not:
 ```rb
 hello
 ```
+
+### Sum
 
 Let's make it a bit more interesting by adding addition:
 
