@@ -6,6 +6,9 @@ Have you ever wondered "How does Ruby work?".
 
 ## Parsing
 
+- Explain grammars with a simple example
+  - a language taht only has sum and subtraction
+
 ### Lexer
 
 - Make connection with how we parse sentence when reading
