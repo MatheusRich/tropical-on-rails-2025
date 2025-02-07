@@ -20,7 +20,7 @@ class Parser
   def program
     expr = number
 
-    if matches?(:+)
+    if matches? :+
       advance
       expr2 = program
 
