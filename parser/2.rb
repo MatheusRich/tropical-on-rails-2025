@@ -19,7 +19,7 @@ class Parser
     expr = number
 
     if matches?(/\+/)
-      @tokens.shift
+      advance
       expr2 = program
     end
 
@@ -27,7 +27,7 @@ class Parser
   end
 
   def number
-    token = @tokens.shift
+    token = advance
     raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
 
     {type: :number, value: token.to_i}
