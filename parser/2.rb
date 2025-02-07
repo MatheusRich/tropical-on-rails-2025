@@ -20,7 +20,7 @@ class Parser
 
     if matches?(/\+/)
       @tokens.shift
-      operator = +
+      operator = :+
       expr2 = {type: :add, left: expr, right: number}
     end
   end
