@@ -42,10 +42,18 @@ def meaning_of = 42
 puts meaning_of(:life, :universe, :everything)
 ```
 
+---
+
 So there are 3 steps to this process:
 
 1. **Lexing**: Splitting the code into tokens
 2. **Parsing**: Checking the structure and relation of the tokens
-3. **Interpretation**: Understanding the meaning of the code.
+3. **Interpretation/Execution**: Understanding the meaning of the code and running it
+
+In Ruby, that's roughly divided like this
+
+1. Lexer & Parsing: Prism
+2. Interpretation: YARV (vm)
+3. Execution: YARV (vm) + YJIT
 
 ---
