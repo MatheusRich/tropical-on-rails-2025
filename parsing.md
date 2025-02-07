@@ -57,3 +57,11 @@ In Ruby, that's roughly divided like this
 3. Execution: YARV (vm) + YJIT
 
 ---
+
+Let's imagine a simple language. It only let's you write numbers.
+
+```
+program -> NUMBER
+
+NUMBER  -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+```
