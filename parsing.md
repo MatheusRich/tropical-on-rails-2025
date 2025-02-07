@@ -93,6 +93,33 @@ module Tokenizer
 end
 ```
 
+Now let's write the parser:
+
+```rb
+class Parser
+  def initialize(tokens)
+    @tokens = tokens
+  end
+
+  def call
+    program
+  end
+
+  private
+
+  def program
+    number
+  end
+
+  def number
+    token = @tokens.shift
+    raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
+
+    { type: :number, value: token.to_i }
+  end
+end
+```
+
 ### Sum
 
 Let's make it a bit more interesting by adding addition:
