@@ -42,3 +42,5 @@ So there are 3 steps to this process:
 1. **Lexing**: Splitting the code into tokens
 2. **Parsing**: Checking the structure and relation of the tokens
 3. **Interpretation**: Understanding the meaning of the code.
+
+---
