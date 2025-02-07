@@ -22,6 +22,8 @@ class Parser
       @tokens.shift
       expr2 = program
     end
+
+    expr
   end
 
   def number
