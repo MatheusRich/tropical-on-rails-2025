@@ -22,7 +22,7 @@ class Parser
       advance
       expr2 = program
 
-      return {type: :sum, left: expr, right: expr2}
+      return {type: :binary, operator: :+, left: expr, right: expr2}
     end
 
     expr
