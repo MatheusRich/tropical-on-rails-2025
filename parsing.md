@@ -2,7 +2,7 @@
 
 ## Introduction
 
-> If you don't know how compilers work, then you don't know how computers work. - Steve Yegge (Check)
+> If you don't know how compilers work, then you don't know how computers work. - Steve Yegge
 
 To understand how Ruby works, let's think about how _we_ read text.
 
