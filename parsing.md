@@ -94,5 +94,7 @@ That let's us sum two numbers. Let's change it to allow any number of sums:
 
 ```rb
 program → NUMBER
-        | NUMBER "+" program
+        | sum
+
+sum     → NUMBER "+" program
 ```
