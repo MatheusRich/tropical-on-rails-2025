@@ -29,6 +29,16 @@ example:
 
 > Colorless green ideas sleep furiously
 
-While this sentence follow grammar rules, it doesn't make sense.
+While this sentence follow grammar rules, it doesn't make sense. ALthough some
+might argue that it sounds poetic, thus having a meaning. That's a topic for a
+different discussion.
 
-With programming it's the same thing.
+With programming it's the same thing. The computer will read your sentence
+(code), split it into tokens, check their structure and relation, and interpret
+their meaning (or error if it doesn't make sense).
+
+So there are 3 steps to this process:
+
+1. **Lexing**: Splitting the code into tokens
+2. **Parsing**: Checking the structure and relation of the tokens
+3. **Interpretation**: Understanding the meaning of the code.
