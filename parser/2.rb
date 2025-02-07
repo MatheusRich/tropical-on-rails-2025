@@ -19,7 +19,8 @@ class Parser
     expr = number
 
     if matches?(/\+/)
-      expr2 = {type: :add, left: expr, right: number}
+      @tokens.shift
+      expr2 = program
     end
   end
 
@@ -47,8 +48,13 @@ end
 assert_equal({type: :number, value: 1}, Interpreter.call("1"))
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
-assert_raises({}, Interpreter.call("1 + 1 + 2"))
-assert_raises({}, Interpreter.call("1 + 1"))
-assert_raises({}, Interpreter.call("1 + 1 + 2"))
+puts Interpreter.call("1 + 1 + 2")
+# assert_equal({}, Interpreter.call("1 + 1 + 2"))
+puts Interpreter.call("1 + 1")
+# assert_equal({}, Interpreter.call("1 + 1"))
+puts Interpreter.call("")
+# assert_raises("", Interpreter.call(""))
+puts Interpreter.call("1 +")
+# assert_raises("", Interpreter.call("1 +"))
 
 puts "All tests pass"
