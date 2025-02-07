@@ -57,7 +57,7 @@ assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
 puts Interpreter.call("1 + 1 + 2")
 # assert_equal({}, Interpreter.call("1 + 1 + 2"))
-puts Interpreter.call("1 + 1")
+# puts Interpreter.call("1 + 1")
 # assert_equal({}, Interpreter.call("1 + 1"))
 # puts Interpreter.call("")
 # assert_raises("", Interpreter.call(""))
