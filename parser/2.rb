@@ -1,6 +1,6 @@
 require_relative "helper"
 
-# https :/ / craftinginterpreters.com / parsing - expressions.html # the-parser-class
+# https://craftinginterpreters.com/parsing-expressions.html#the-parser-class
 
 module Tokenizer
   def self.call(input)
