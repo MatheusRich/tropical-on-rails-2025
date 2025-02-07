@@ -36,6 +36,7 @@ class Parser
   private
 
   def matches?(type)
+    return false if @tokens.empty?
     type === @tokens.first
   end
 end
