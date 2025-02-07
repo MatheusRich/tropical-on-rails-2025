@@ -16,7 +16,12 @@ class Parser
   end
 
   def program
-    number
+    expr = number
+
+    while matches?(/+/)
+      @tokens.shift
+      expr = {type: :add, left: expr, right: number}
+    end
   end
 
   def number
