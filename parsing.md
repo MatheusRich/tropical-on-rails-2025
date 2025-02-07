@@ -60,7 +60,7 @@ In Ruby, that's roughly divided like this
 
 ## Writing a parser
 
-Let's imagine a simple language. It only let's you write numbers.
+Let's imagine a simple language. It only let's you write single digit numbers.
 
 ```rb
 program → NUMBER
