@@ -37,6 +37,11 @@ With programming it's the same thing. The computer will read your sentence
 (code), split it into tokens, check their structure and relation, and interpret
 their meaning (or error if it doesn't make sense).
 
+```rb
+def meaning_of = 42
+puts meaning_of(:life, :universe, :everything)
+```
+
 So there are 3 steps to this process:
 
 1. **Lexing**: Splitting the code into tokens
