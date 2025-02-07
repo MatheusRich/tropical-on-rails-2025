@@ -68,6 +68,17 @@ program → NUMBER
 NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 ```
 
+Let's to write a parser for that. To keep thing simple, I'll skip the tokenizer by just spliting the input by space.
+
+```rb
+module Tokenizer
+  def self.tokenize(input)
+    input.split
+  end
+end
+
+```
+
 This is the grammar. It tells us that a program is a number, and a number is any
 digit from 0 to 9.
 
