@@ -24,6 +24,10 @@ Impact:
 
 How do we go from a AST to code running on the CPU?
 
+Ruby compiles the AST into Bytecode, which is then executed by the VM. So Ruby is in fact a compiled language.
+
+![](https://craftinginterpreters.com/image/a-map-of-the-territory/venn.png)
+
 vm lock GVL/GVM: why do we have it? What are the tradeoffs?
   - Mention Threads, Fibers, and how they never run in parallel
   - Mention Ractors, the only way to run CRuby code in parallel (link to previous talk)
