@@ -19,8 +19,6 @@ class Parser
     expr = number
 
     if matches?(/\+/)
-      @tokens.shift
-      operator = :+
       expr2 = {type: :add, left: expr, right: number}
     end
   end
@@ -35,7 +33,7 @@ class Parser
   private
 
   def matches?(type)
-    @tokens.first == type
+    type === @tokens.first
   end
 end
 
@@ -49,6 +47,7 @@ end
 assert_equal({type: :number, value: 1}, Interpreter.call("1"))
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
+assert_raises({}, Interpreter.call("1 + 1 + 2"))
 assert_raises({}, Interpreter.call("1 + 1"))
 assert_raises({}, Interpreter.call("1 + 1 + 2"))
 
