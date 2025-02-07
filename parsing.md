@@ -60,8 +60,28 @@ In Ruby, that's roughly divided like this
 
 Let's imagine a simple language. It only let's you write numbers.
 
-```
+```rb
 program -> NUMBER
 
 NUMBER  -> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 ```
+
+This is the grammar. It tells us that a program is a number, and a number is any
+digit from 0 to 9.
+
+So this program is valid:
+
+```rb
+5
+```
+
+and this one is not:
+
+```rb
+hello
+```
+
+Let's make it a bit more interesting by adding addition:
+
+```rb
+program -> NUMBER | NUMBER "+" NUMBER
