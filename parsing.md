@@ -86,3 +86,11 @@ Let's make it a bit more interesting by adding addition:
 ```rb
 program → NUMBER
         | NUMBER "+" NUMBER
+```
+
+That let's us sum two numbers. Let's change it to allow any number of sums:
+
+```rb
+program → NUMBER
+        | NUMBER "+" program
+```
