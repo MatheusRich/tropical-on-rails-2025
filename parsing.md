@@ -53,7 +53,7 @@ So there are 3 steps to this process:
 In Ruby, that's roughly divided like this
 
 1. Lexer & Parsing: Prism
-2. Interpretation: YARV (vm)
+2. Interpretation/Compilation: YARV (vm)
 3. Execution: YARV (vm) + YJIT
 
 ---
