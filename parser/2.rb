@@ -49,4 +49,7 @@ end
 assert_equal({type: :number, value: 1}, Interpreter.call("1"))
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
+assert_raises({}, Interpreter.call("1 + 1"))
+assert_raises({}, Interpreter.call("1 + 1 + 2"))
+
 puts "All tests pass"
