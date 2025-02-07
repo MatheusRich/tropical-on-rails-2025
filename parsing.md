@@ -76,7 +76,6 @@ module Tokenizer
     input.split
   end
 end
-
 ```
 
 This is the grammar. It tells us that a program is a number, and a number is any
