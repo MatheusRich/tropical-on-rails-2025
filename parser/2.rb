@@ -31,6 +31,12 @@ class Parser
 
     {type: :number, value: token.to_i}
   end
+
+  private
+
+  def matches?(type)
+    @tokens.first == type
+  end
 end
 
 module Interpreter
