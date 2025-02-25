@@ -30,7 +30,6 @@ class Parser
   private
 
   def advance
-
     @tokens.shift
   end
 end

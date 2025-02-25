@@ -121,7 +121,6 @@ class Parser
   private
 
   def advance
-
     @tokens.shift
   end
 end
@@ -189,7 +188,6 @@ class Parser
   end
 
   def advance
-
     @tokens.shift
   end
 end

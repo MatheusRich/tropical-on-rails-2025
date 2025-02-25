@@ -78,7 +78,6 @@ class Parser
   end
 
   def advance
-
     @tokens.shift
   end
 end
