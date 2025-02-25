@@ -66,6 +66,8 @@ class Parser
   end
 
   def primary
+      binding.irb
+
     if matches?(/\A\d\z/)
       number
     elsif matches?("(")
@@ -77,7 +79,6 @@ class Parser
     elsif advance.nil?
       raise "EOF"
     else
-      binding.
       raise "Expected a number, got #{advance}"
     end
   end
