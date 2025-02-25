@@ -2,4 +2,4 @@
 
 require 'fileutils'
 ruby_files = Dir.glob("parser/*.rb").sort
-system("TEST=false ruby #{ruby_files[-2]}")
+system("ruby #{ruby_files[-2]}")
