@@ -292,4 +292,21 @@ Note how we're using recursion to handle the parenthesis. This is why this kind 
 
 Why is this important?
 
-- learn how
+- Undertand how the ruby parser works
+- precedence rules impact on real code:
+  
+
+```rb
+  return if token.nil?
+  ```
+
+  is parsed as
+
+  
+
+```rb
+  result = token.nil?
+  if result
+    return
+  end
+  ```
