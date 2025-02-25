@@ -76,8 +76,6 @@ module Interpreter
   end
 end
 
-binding.irb
-
 assert_equal(
   "(+ 1 2)",
   to_s_expr(Interpreter.call("1 + 2"))
