@@ -74,7 +74,7 @@ class Parser
       expr = term
       raise "Expected a closing parenthesis" unless advance == ")"
       expr
-    elsif token.nil?
+    elsif advance.nil?
       raise "EOF"
     else
       raise "Expected a number, got #{advance}"
