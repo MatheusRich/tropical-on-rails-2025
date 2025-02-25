@@ -30,7 +30,7 @@ class Parser
   private
 
   def advance
-    #return if @tokens.empty?
+
     @tokens.shift
   end
 end
