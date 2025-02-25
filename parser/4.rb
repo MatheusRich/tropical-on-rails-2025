@@ -134,7 +134,7 @@ else
   assert_raises("EOF") { Interpreter.call("1 +") }
   assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
   assert_raises(/Expected a closing parenthesis/) { Interpreter.call("( 1 + 2") }
-  assert_raises(/Expected a number got )/) { Interpreter.call(")") }
+  assert_raises(/Expected a number got \)/) { Interpreter.call(")") }
 
   puts "All tests pass"
 end
