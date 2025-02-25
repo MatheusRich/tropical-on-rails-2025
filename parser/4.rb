@@ -66,8 +66,6 @@ class Parser
   end
 
   def primary
-      binding.irb
-
     if matches?(/\A\d\z/)
       number
     elsif matches?("(")
