@@ -77,6 +77,7 @@ class Parser
     elsif advance.nil?
       raise "EOF"
     else
+      binding.irb
       raise "Expected a number, got #{advance}"
     end
   end
