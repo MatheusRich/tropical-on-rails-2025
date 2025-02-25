@@ -115,23 +115,23 @@ if %w[0 no false].include?(ENV["TEST"])
     puts "#{e.class}: #{e.message}"
   end
 else
-  # assert_equal(
-  #   "(+ 1 2)",
-  #   to_s_expr(Interpreter.call("1 + 2"))
-  # )
-  # assert_equal(
-  #   "(+ (- 1 2) 3)",
-  #   to_s_expr(Interpreter.call("1 - 2 + 3"))
-  # )
-  # assert_equal(
-  #   "(- 1 (/ (* 2 3) 4))",
-  #   to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
-  # )
-  # assert_equal(
-  #   "(- 1 (+ 2 3))",
-  #   to_s_expr(Interpreter.call("1 - ( 2 + 3 )"))
-  # )
-  # assert_raises("EOF") { Interpreter.call("1 +") }
+  assert_equal(
+    "(+ 1 2)",
+    to_s_expr(Interpreter.call("1 + 2"))
+  )
+  assert_equal(
+    "(+ (- 1 2) 3)",
+    to_s_expr(Interpreter.call("1 - 2 + 3"))
+  )
+  assert_equal(
+    "(- 1 (/ (* 2 3) 4))",
+    to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
+  )
+  assert_equal(
+    "(- 1 (+ 2 3))",
+    to_s_expr(Interpreter.call("1 - ( 2 + 3 )"))
+  )
+  assert_raises("EOF") { Interpreter.call("1 +") }
   assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
   # assert_raises(/Expected a closing parenthesis/) { Interpreter.call("(1 + 2") }
 
