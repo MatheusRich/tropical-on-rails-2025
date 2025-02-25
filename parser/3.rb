@@ -18,11 +18,12 @@ module Tokenizer
   end
 end
 
-# ```grammar
+# ```rb
 # program → term
-# term    → NUMBER ("+" NUMBER)*
+# term    → factor ( ( "+" | "-" ) factor )*
+# factor  → NUMBER ( ( "/" | "*" ) NUMBER )*
+# NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 # ```
-
 class Parser
   def initialize(tokens)
     @tokens = tokens
@@ -37,9 +38,22 @@ class Parser
   end
 
   def term
-    expr = number
+    expr = factor
 
     while matches?("+", "-")
+      operator = advance
+      expr2 = factor
+
+      expr = {type: :binary, operator:, left: expr, right: expr2}
+    end
+
+    expr
+  end
+
+  def factor
+    expr = number
+
+    while matches?("*", "/")
       operator = advance
       expr2 = number
 
@@ -76,7 +90,8 @@ module Interpreter
   end
 end
 
-binding.irb
+# assert_equal({type: :number, value: 1}, Interpreter.call("1"))
+# assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 
 assert_equal(
   "(+ 1 2)",
@@ -86,6 +101,11 @@ assert_equal(
   "(+ (- 1 2) 3)",
   to_s_expr(Interpreter.call("1 - 2 + 3"))
 )
+assert_equal(
+  "(- 1 (/ (* 2 3) 4))",
+  to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
+)
+assert_raises("EOF") { Interpreter.call("1 +") }
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
 assert_raises("EOF") { Interpreter.call("1 +") }
 

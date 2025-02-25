@@ -4,7 +4,8 @@
 
 > If you don't know how compilers work, then you don't know how computers work. - Steve Yegge
 
-To understand how Ruby works, let's think about how _we_ read text.
+We want to understand how the Ruby interpreter reads our code and executes it.
+To start that journey, let's think about how _we_ read text.
 
 > Ruby: A Programmer's Best Friend
 
@@ -105,17 +106,23 @@ class Parser
     program
   end
 
-  private
-
   def program
     number
   end
 
   def number
-    token = @tokens.shift
+    token = advance
+    raise "EOF" if token.nil?
     raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
 
-    { type: :number, value: token.to_i }
+    {type: :number, value: token.to_i}
+  end
+
+  private
+
+  def advance
+    return if @tokens.empty?
+    @tokens.shift
   end
 end
 ```
@@ -125,17 +132,158 @@ end
 Let's make it a bit more interesting by adding addition:
 
 ```rb
-program → NUMBER
-        | sum
+program → term
 
-sum     → NUMBER "+" NUMBER
+term    → NUMBER
+        | NUMBER "+" NUMBER
 ```
 
 That let's us sum two numbers. Let's change it to allow any number of sums:
 
 ```rb
-program → NUMBER
-        | sum
-
-sum     → NUMBER "+" program
+program → term
+term    → NUMBER ("+" NUMBER)*
 ```
+
+here's the parser
+
+```rb
+class Parser
+  def initialize(tokens)
+    @tokens = tokens
+  end
+
+  def call
+    program
+  end
+
+  def program
+    term
+  end
+
+  def term
+    expr = number
+
+    while matches?("+", "-")
+      operator = advance
+      expr2 = number
+
+      expr = {type: :binary, operator:, left: expr, right: expr2}
+    end
+
+    expr
+  end
+
+  def number
+    token = advance
+    raise "EOF" if token.nil?
+    raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
+
+    {type: :number, value: token.to_i}
+  end
+
+  private
+
+  def matches?(*types)
+    types.any? { it === @tokens.first }
+  end
+
+  def advance
+    return if @tokens.empty?
+    @tokens.shift
+  end
+end
+```
+
+So, something simple as 1 - 2 + 3 would look like this:
+
+```rb
+{type: :binary,
+ operator: "+",
+ left: {type: :binary, operator: "-", left: {type: :number, value: 1}, right: {type: :number, value: 2}},
+ right: {type: :number, value: 3}}
+```
+
+Which is pretty verbose. THat's why people often sue s-expressions to represent AST. So the same thing would look like this:
+
+```rb
+(+ (- 1 2) 3)
+```
+
+As a tree, it would look like this:
+
+```
+    +
+   / \
+  -   3
+ / \
+1   2
+```
+
+Let's try adding multiplication and division. The initial thought could be just adding something to the `term` rule:
+
+```rb
+def term
+  expr = number
+
+  while matches?("+", "-", "*", "/")
+    operator = advance
+    expr2 = number
+
+    expr = {type: :binary, operator:, left: expr, right: expr2}
+  end
+
+  expr
+end
+```
+
+But this would be wrong, because not all math operation have the same precedence. Here's what we're getting
+
+```
+         /
+        / \
+       *   4
+      / \
+     -   3
+    / \
+   1   2
+```
+
+Because of PEMDAS, multiplication and division should be done before addition and subtraction. THis is the correct tree:
+
+```
+        -
+       / \
+      1   /
+         / \
+        *   4
+       / \
+      2   3
+```
+
+To fix that, we need to add a new rule for multiplication and division:
+
+```rb
+program → term
+term    → factor ( ( "+" | "-" ) factor )*
+factor  → NUMBER ( ( "/" | "*" ) NUMBER )*
+NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+```
+
+In the code, it would look like this:
+
+<%= File.read "parser/3.rb" %>
+
+But, just for good measure, let's add parenthesis:
+
+```rb
+program → term
+term    → factor ( ( "+" | "-" ) factor )*
+factor  → primary ( ( "/" | "*" ) primary )*
+primary → NUMBER | "(" term ")"
+NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+```
+
+In the code, it would look like this:
+
+<%= File.read "parser/4.rb" %>

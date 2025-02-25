@@ -20,10 +20,18 @@ class Parser
   end
 
   def number
-    token = @tokens.shift
+    token = advance
+    raise "EOF" if token.nil?
     raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
 
     {type: :number, value: token.to_i}
+  end
+
+  private
+
+  def advance
+    return if @tokens.empty?
+    @tokens.shift
   end
 end
 
@@ -36,5 +44,6 @@ end
 
 assert_equal({type: :number, value: 1}, Interpreter.call("1"))
 assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
+assert_raises(/EOF/) { Interpreter.call("") }
 
 puts "All tests pass"
