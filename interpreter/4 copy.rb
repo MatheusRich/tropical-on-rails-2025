@@ -106,7 +106,7 @@ module Interpreter
   end
 
   def self.interpret(ast)
-
+    case ast[:type]
   end
 end
 
