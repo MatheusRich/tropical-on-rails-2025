@@ -338,7 +338,7 @@ to help the parser, you can use parenthesis:
 
 ## Parsers aren't just for compilers
 
-Many of the tools we use are parsers
+Many of the tools we use depend on  parsers:
 
 - Rails
   - to get file and line numbers for a specific test (https://github.com/rails/rails/pull/51006/files)
