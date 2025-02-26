@@ -296,8 +296,9 @@ Why is this important?
 - precedence rules impact on real code:
 
 ```rb
-  return if token.nil?
-  ```
+1..10.each { puts it }
+# raises NoMethodError: undefined method `each' for Integer
+```
 
   is parsed as
 
