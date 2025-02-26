@@ -362,5 +362,6 @@ Many of the tools we use depend on  parsers:
 And there were several parsers available for Ruby:
 
 - Ripper
-- RubyParser
+- parser gem
+- ruby_parser gem
 - tree-sitter
