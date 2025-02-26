@@ -298,19 +298,21 @@ Why is this important?
 Example 1:
 
 ```rb
-foo = a || b
+a = false || true
+b = false or true
 ```
 
-We know this is parsed as
+It may look similar, but `or` has lower precedence than `||`, so the first one is parsed as
 
 ```rb
-foo = (a || b)
+a = (false || true)
 ```
 
-But if the parser didn't had proper precedence rules, it could be parsed as
+While the second one is parsed as
 
 ```rb
-(foo = a) || b
+(b = false) or true
+# returns true, but assigns false to b
 ```
 
 Example 2:
