@@ -347,6 +347,7 @@ Many of the tools we use depend on  parsers:
 
 - ruby-lsp
 - solargraph
+
 - flay
 - flog
 - churn
