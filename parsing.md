@@ -340,6 +340,7 @@ to help the parser, you can use parenthesis:
 
 Many of the tools we use depend on  parsers:
 
+- irb
 - Rails
   - to get file and line numbers for a specific test (https://github.com/rails/rails/pull/51006/files)
 - Rubocop
