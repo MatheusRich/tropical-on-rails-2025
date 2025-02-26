@@ -335,3 +335,8 @@ to help the parser, you can use parenthesis:
 (1..10).each { puts it }
 # prints 1 to 10
 ```
+
+## Many of the tools we use are parsers
+
+- Rubocop
+-
