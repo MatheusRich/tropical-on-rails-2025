@@ -348,6 +348,8 @@ Many of the tools we use depend on  parsers:
 - ruby-lsp
 - solargraph
 
+- scout_apm
+
 - flay
 - flog
 - churn
