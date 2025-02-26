@@ -270,7 +270,7 @@ NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
 In the code, it would look like this:
 
-<%= File.read "parser/3.rb" %>
+<%= File.read "interpreter/3.rb" %>
 
 But, just for good measure, let's add parenthesis:
 
@@ -284,7 +284,7 @@ NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
 In the code, it would look like this:
 
-<%= File.read "parser/4.rb" %>
+<%= File.read "interpreter/4.rb" %>
 
 Note how we're using recursion to handle the parenthesis. This is why this kind of algorithm is called a recursive descent parser.
 
