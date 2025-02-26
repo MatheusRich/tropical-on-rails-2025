@@ -367,3 +367,5 @@ And there were several parsers available for Ruby:
 - parser gem
 - ruby_parser gem
 - tree-sitter
+
+This leads to a fractured ecosystem, where several tools use different parsers, which might behave differently, and have different AST representations.
