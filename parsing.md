@@ -352,7 +352,6 @@ Many of the tools we use depend on  parsers:
 - scout_apm
 
 - console1984
-- opal
 
 - flay
 - flog
