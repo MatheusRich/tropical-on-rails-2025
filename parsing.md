@@ -358,3 +358,9 @@ Many of the tools we use depend on  parsers:
 - churn
 - reek
 - fasterer
+
+And there were several parsers available for Ruby:
+
+- Ripper
+- RubyParser
+- tree-sitter
