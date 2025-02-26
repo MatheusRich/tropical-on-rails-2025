@@ -313,7 +313,7 @@ While the second one is parsed as
 
 ```rb
 (b = false) or true
-# returns true, and assigns true to a
+# assigns false to b, and returns true
 ```
 
 Example 2:
