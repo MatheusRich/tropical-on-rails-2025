@@ -388,6 +388,7 @@ Also more performance, who doesn't want that?
 - https://github.com/rails/rails/pull/49438
 - https://eregon.me/blog/2024/10/27/benchmarking-ruby-parsers.html#:~:text=Conclusion,fast%20as%20the%20Parser%20gem!
   > When parsing and walking, Prism is 12% faster than RubyVM::AbstractSyntaxTree and 12x as fast as the Parser gem!
+  >
   > When parsing to C structs, Prism is 2.56x as fast as parse.y. Who thought parsing Ruby in C could be made > more than twice as fast?
   >
   > When compiling to bytecode, Prism is 1.46x as fast as parse.y, speeding up boot times.
