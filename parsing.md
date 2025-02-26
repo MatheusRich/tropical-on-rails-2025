@@ -395,3 +395,5 @@ Also more performance, who doesn't want that?
 
 So, if you are thinking about creating a gem that needs to parse Ruby code, check out prism.
 I've built one myself. HEre's code_picture, a gem that generates a visual representation of your code:
+
+![alt text](image.png)
