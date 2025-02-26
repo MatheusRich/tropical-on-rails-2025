@@ -382,4 +382,4 @@ used by several tools including Ruby itself.
 
 Prism is a handwritten recursive descent parser, that was built with error
 tolerance in mind. We should expect better tools for Ruby (Ruby-LSP has been
-improving the DX extremely)
+improving the DX extremely), with better and more accurate error messages
