@@ -379,3 +379,7 @@ code complexity don't know how to handle it,.
 
 Luckily, Shopify worked on a new parser for Ruby, called Prism, which is now
 used by several tools including Ruby itself.
+
+Prism is a handwritten recursive descent parser, that was built with error
+tolerance in mind. We should expect better tools for Ruby (Ruby-LSP has been
+improving the DX extremely)
