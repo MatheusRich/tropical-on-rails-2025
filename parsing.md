@@ -310,4 +310,5 @@ to help the parser, you can use parenthesis:
 
 ```rb
 (1..10).each { puts it }
+# outputs 1 to 10
 ```
