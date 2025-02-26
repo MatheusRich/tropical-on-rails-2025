@@ -338,7 +338,8 @@ to help the parser, you can use parenthesis:
 
 ## Parsers aren't just for compilers
 
-Many of the tools we use depend on  parsers:
+You might be thinking "I'm not writing a compiler, why should I care about parsers?"
+Many of the tools we use depend on parsers:
 
 - irb
 - Rails
