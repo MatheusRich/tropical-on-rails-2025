@@ -295,6 +295,26 @@ Why is this important?
 - Understand how the ruby parser works
 - precedence rules impact on real code:
 
+Example 1:
+
+```rb
+foo = a || b
+```
+
+We know this is parsed as
+
+```rb
+foo = (a || b)
+```
+
+But if the parser didn't had proper precedence rules, it could be parsed as
+
+```rb
+(foo = a) || b
+```
+
+Example 2:
+
 ```rb
 1..10.each { puts it }
 # raises NoMethodError: undefined method `each' for Integer
