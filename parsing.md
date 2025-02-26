@@ -306,6 +306,7 @@ It may look similar, but `or` has lower precedence than `||`, so the first one i
 
 ```rb
 a = (false || true)
+# returns true, and assigns true to a
 ```
 
 While the second one is parsed as
