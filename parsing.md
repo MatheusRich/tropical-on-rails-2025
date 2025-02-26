@@ -392,3 +392,6 @@ Also more performance, who doesn't want that?
   > When parsing to C structs, Prism is 2.56x as fast as parse.y. Who thought parsing Ruby in C could be made > more than twice as fast?
   >
   > When compiling to bytecode, Prism is 1.46x as fast as parse.y, speeding up boot times.
+
+So, if you are thinking about creating a gem that needs to parse Ruby code, check out prism.
+I've built one myself. HEre's code_picture, a gem that generates a visual representation of your code:
