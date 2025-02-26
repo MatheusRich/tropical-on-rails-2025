@@ -372,5 +372,5 @@ This leads to a fractured ecosystem, where several tools use different parsers, 
 
 So, when Ruby adds new syntax (like endless method definitions), every
 maintainer of these tools has to update their parser to support it. So you won't
-get IDE support for the new syntax, formatters, linters and tools to measure
+get IDE support for the new syntax, formatters, linters, and tools to measure
 code complexity don't know how to handle it,.
