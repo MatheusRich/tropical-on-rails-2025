@@ -4,6 +4,8 @@ With the AST at hand, we can interpret it to run our program.
 
 ![](./interpreting-ruby-1.8.png)
 
+## Considerations
+
 - Simple, but slow
 - How RUby <= 1.8 worked
 
