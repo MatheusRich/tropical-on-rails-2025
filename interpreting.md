@@ -11,6 +11,8 @@ With the AST at hand, we can interpret it to run our program.
 
 - How AST becomes bytecode
 
+![](./interpreting-ruby-1.9.png)
+
 # Interpreting bytecode
 
 - Executing bytecode
