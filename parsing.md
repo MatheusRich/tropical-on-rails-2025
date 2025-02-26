@@ -345,4 +345,5 @@ Many of the tools we use depend on  parsers:
 - Rubocop
 - ruby-lsp
 - flay & flog
+- fasterer
 - packwerk
