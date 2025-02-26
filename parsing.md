@@ -343,9 +343,10 @@ Many of the tools we use depend on  parsers:
 - Rails
   - to get file and line numbers for a specific test (https://github.com/rails/rails/pull/51006/files)
 - Rubocop
+- packwerk
+
 - ruby-lsp
 - solargraph
-- packwerk
 - flay
 - flog
 - churn
