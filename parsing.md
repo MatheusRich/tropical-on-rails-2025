@@ -340,5 +340,6 @@ to help the parser, you can use parenthesis:
 
 Many of the tools we use are parsers
 
+- Rails
 - Rubocop
 - ruby-lsp
