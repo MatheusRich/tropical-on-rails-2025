@@ -104,6 +104,10 @@ module Interpreter
     ast = Parser.new(tokens).call
     interpret(ast)
   end
+
+  def self.interpret(ast)
+
+  end
 end
 
 if %w[0 no false].include?(ENV["TEST"])
