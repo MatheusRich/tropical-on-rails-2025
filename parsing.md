@@ -300,11 +300,14 @@ Why is this important?
 # raises NoMethodError: undefined method `each' for Integer
 ```
 
-  is parsed as
+because it is parsed as
 
 ```rb
-  result = token.nil?
-  if result
-    return
-  end
-  ```
+1..(10.each { puts it })
+```
+
+to help the parser, you can use parenthesis:
+
+```rb
+(1..10).each { puts it }
+```
