@@ -25,10 +25,13 @@ There you go. We just built a very simple interpreter!
 
 ![](./interpreting-ruby-1.8.png)
 
-This is exactly how Ruby <= 1.8 worked. Check this code from the Ruby 1.8 source code:
+This is exactly how Ruby <= 1.8 worked. Let's check some examples from the source code directly
 
 ```c
-//
+// eval.c
+case NODE_LIT:
+	result = node->nd_lit;
+	break;
 ```
 
 ## Considerations
