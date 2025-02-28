@@ -27,6 +27,13 @@ There you go. We just built a very simple interpreter!
 
 This is exactly how Ruby <= 1.8 worked. Let's check some examples from the source code directly
 
+<!--
+{
+  type: :literal,
+  literal: 42
+}
+ -->
+
 ```c
 // eval.c
 static VALUE
