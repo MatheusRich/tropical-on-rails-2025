@@ -82,13 +82,10 @@ rb_eval(self, n)
   again:
     switch (nd_type(node)) {
       // ...
-      case NODE_IF:
-        if (RTEST(rb_eval(self, node->nd_cond))) {
-          node = node->nd_body;
-        }
-        else {
-          node = node->nd_else;
-        }
+      case NODE_AND:
+        result = rb_eval(self, node->nd_1st);
+        if (!RTEST(result)) break;
+        node = node->nd_2nd;
         goto again;
       // ...
     }
