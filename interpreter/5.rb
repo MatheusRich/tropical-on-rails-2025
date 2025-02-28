@@ -157,7 +157,7 @@ else
   assert_equal(3, Interpreter.call("1 + 2"))
   assert_equal(-1, Interpreter.call("1 - 2"))
   assert_equal(7, Interpreter.call("1 + 2 * 3"))
-  assert_equal(4, Interpreter.call("8 / 2 + 0 +"))
+  assert_equal(4, Interpreter.call("8 / 2 + 0"))
 
   puts "All tests pass"
 end
