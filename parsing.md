@@ -339,6 +339,23 @@ to help the parser, you can use parenthesis:
 # prints 1 to 10
 ```
 
+## In the real world
+
+```c
+/**
+ * If the character to be read matches the given value, then returns true and
+ * advances the current pointer.
+ */
+static inline bool
+match(pm_parser_t *parser, uint8_t value) {
+    if (peek(parser) == value) {
+        parser->current.end++;
+        return true;
+    }
+    return false;
+}
+```
+
 ## Parsers aren't just for compilers
 
 You might be thinking "I'm not writing a compiler, why should I care about
