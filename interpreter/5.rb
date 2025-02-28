@@ -133,24 +133,24 @@ if %w[0 no false].include?(ENV["TEST"])
 else
   assert_equal(
     "(+ 1 2)",
-    to_s_expr(Interpreter.call("1 + 2"))
+    to_s_expr(Interpreter.pare("1 + 2"))
   )
   assert_equal(
     "(+ (- 1 2) 3)",
-    to_s_expr(Interpreter.call("1 - 2 + 3"))
+    to_s_expr(Interpreter.pare("1 - 2 + 3"))
   )
   assert_equal(
     "(- 1 (/ (* 2 3) 4))",
-    to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
+    to_s_expr(Interpreter.pare("1 - 2 * 3 / 4"))
   )
   assert_equal(
     "(- 1 (+ 2 3))",
-    to_s_expr(Interpreter.call("1 - ( 2 + 3 )"))
+    to_s_expr(Interpreter.pare("1 - ( 2 + 3 )"))
   )
-  assert_raises("EOF") { Interpreter.call("1 +") }
-  assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
-  assert_raises(/Expected a closing parenthesis/) { Interpreter.call("( 1 + 2") }
-  assert_raises(/Expected a number, got \)/) { Interpreter.call(")") }
+  assert_raises("EOF") { Interpreter.pare("1 +") }
+  assert_raises(/Expected a number, got a/) { Interpreter.pare("a") }
+  assert_raises(/Expected a closing parenthesis/) { Interpreter.pare("( 1 + 2") }
+  assert_raises(/Expected a number, got \)/) { Interpreter.pare(")") }
 
   puts "All tests pass"
 end
