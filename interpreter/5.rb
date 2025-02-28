@@ -102,7 +102,6 @@ module Interpreter
   def self.call(input)
     parse(input)
       .then { interpret(it) }
-    interpret(ast)
   end
 
   def self.parse(code)
