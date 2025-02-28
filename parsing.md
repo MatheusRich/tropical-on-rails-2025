@@ -126,6 +126,9 @@ class Parser
 end
 ```
 
+Note that we're already doing some decisions about our language. All numbers are
+integers. If we wanted, we could use `.to_f` instead to make them floats.
+
 ### Sum
 
 Let's make it a bit more interesting by adding addition:
