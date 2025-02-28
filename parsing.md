@@ -341,6 +341,11 @@ to help the parser, you can use parenthesis:
 
 ## In the real world
 
+Our code isn't too far from what a real parser looks like. Here's a snippet from
+Prism, for parsing
+
+even the helpers are similar:
+
 ```c
 /**
  * If the character to be read matches the given value, then returns true and
