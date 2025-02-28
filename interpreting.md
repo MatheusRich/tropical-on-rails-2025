@@ -92,6 +92,12 @@ rb_eval(self, n)
 }
 ```
 
+This is why you can do
+
+```rb
+false && puts("Hello")
+```
+
 ## Considerations
 
 - Simple, but slow
