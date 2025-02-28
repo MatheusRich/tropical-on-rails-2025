@@ -3,7 +3,23 @@ https://www.youtube.com/live/6loKD2LXxbc?si=EVAF5Cq9JZtKhXoD&t=826
 
 # Interpreting the AST directly
 
-With the AST at hand, we can interpret it to run our program.
+With the AST at hand, we can interpret it to run our program. TO do that is
+really simple, we just need to check the type of each node and run the appropriate
+code.
+
+```rb
+def self.interpret(ast)
+  case ast[:type]
+  in :number
+    ast[:value]
+  in :binary
+    left = interpret(ast[:left])
+    right = interpret(ast[:right])
+
+    left.send(ast[:operator], right)
+  end
+end
+```
 
 ![](./interpreting-ruby-1.8.png)
 
