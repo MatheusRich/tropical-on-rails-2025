@@ -11,7 +11,6 @@ With the AST at hand, we can interpret it to run our program.
 
 - Simple, but slow
   - https://craftinginterpreters.com/chunks-of-bytecode.html#why-not-walk-the-ast
-  -
 - How RUby <= 1.8 worked
 - https://github.com/MatheusRich/ruby/blob/f48ae0d10c5b586db5748b0d4b645c7e9ff5d52e/eval.c#L2982
 
