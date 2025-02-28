@@ -92,7 +92,7 @@ rb_eval(self, n)
 }
 ```
 
-This is why you can do
+This is why you can do:
 
 ```rb
 false && puts("Hello")
