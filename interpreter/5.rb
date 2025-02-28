@@ -100,8 +100,7 @@ end
 
 module Interpreter
   def self.call(input)
-    parse(input)
-      .then { interpret(it) }
+    parse(input).then { interpret(it) }
   end
 
   def self.parse(code)
