@@ -25,6 +25,8 @@ There you go. We just built a very simple interpreter!
 
 ![](./interpreting-ruby-1.8.png)
 
+This is exactly how Ruby <= 1.8 worked.
+
 ## Considerations
 
 - Simple, but slow
