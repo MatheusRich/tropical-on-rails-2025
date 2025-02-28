@@ -70,6 +70,8 @@ rb_eval(self, n)
 }
 ```
 
+let's check boolean operators like `&&`
+
 ```c
 // eval.c
 static VALUE
