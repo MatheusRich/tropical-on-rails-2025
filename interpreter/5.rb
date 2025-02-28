@@ -131,6 +131,7 @@ if %w[0 no false].include?(ENV["TEST"])
     puts "#{e.class}: #{e.message}"
   end
 else
+  # Parser tests
   assert_equal(
     "(+ 1 2)",
     to_s_expr(Interpreter.parse("1 + 2"))
@@ -151,6 +152,8 @@ else
   assert_raises(/Expected a number, got a/) { Interpreter.parse("a") }
   assert_raises(/Expected a closing parenthesis/) { Interpreter.parse("( 1 + 2") }
   assert_raises(/Expected a number, got \)/) { Interpreter.parse(")") }
+
+  # Interpreter tests
 
   puts "All tests pass"
 end
