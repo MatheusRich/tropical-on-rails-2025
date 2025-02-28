@@ -24,7 +24,7 @@ class Parser
     raise "EOF" if token.nil?
     raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
 
-    {type: :number, value: token.to_i}
+    {type: :number, value: token.to_i} # only integers!
   end
 
   private
