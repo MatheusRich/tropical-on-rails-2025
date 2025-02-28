@@ -1,3 +1,6 @@
+https://www.youtube.com/watch?v=ySuMOEVLaMw&t=2s
+https://www.youtube.com/live/6loKD2LXxbc?si=EVAF5Cq9JZtKhXoD&t=826
+
 # Interpreting the AST directly
 
 With the AST at hand, we can interpret it to run our program.
@@ -13,6 +16,7 @@ With the AST at hand, we can interpret it to run our program.
 # Compiling
 
 - How AST becomes bytecode
+https://github.com/MatheusRich/ruby/blob/7178593558080ca529abb61ef27038236ab2687d/prism_compile.c#L242
 
 ![](./interpreting-ruby-1.9.png)
 
