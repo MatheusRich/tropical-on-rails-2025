@@ -34,6 +34,7 @@ switch (nd_type(node)) {
   case NODE_LIT:
     result = node->nd_lit;
     break;
+  // ...
 }
 ```
 
