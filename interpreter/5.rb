@@ -112,16 +112,7 @@ module Interpreter
       left = interpret(ast[:left])
       right = interpret(ast[:right])
 
-      case ast[:operator]
-      when "+"
-        left + right
-      when "-"
-        left - right
-      when "*"
-        left * right
-      when "/"
-        left / right
-      end
+      left.send(ast[:operator], right)
     end
   end
 end
