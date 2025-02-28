@@ -36,7 +36,7 @@ rb_eval(self, n)
 {
   switch (nd_type(node)) {
     // ...
-    case NODE_LIT:
+    case NODE_LIT: // number
       result = node->nd_lit;
       break;
     // ...
