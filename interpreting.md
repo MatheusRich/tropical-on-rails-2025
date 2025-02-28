@@ -98,7 +98,7 @@ This is why you can do:
 false && puts("Hello")
 ```
 
-and it won't print anythign. we only evaluate the right side if the left side is truthy.
+and it won't print anything. we only evaluate the right side if the left side is truthy.
 
 ## Considerations
 
