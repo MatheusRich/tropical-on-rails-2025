@@ -45,6 +45,31 @@ rb_eval(self, n)
 }
 ```
 
+how if's work
+
+```c
+// eval.c
+static VALUE
+rb_eval(self, n)
+    VALUE self;
+    NODE *node;
+{
+  again:
+    switch (nd_type(node)) {
+      // ...
+      case NODE_IF:
+        if (RTEST(rb_eval(self, node->nd_cond))) {
+          node = node->nd_body;
+        }
+        else {
+          node = node->nd_else;
+        }
+        goto again;
+      // ...
+    }
+}
+```
+
 ```c
 // eval.c
 static VALUE
