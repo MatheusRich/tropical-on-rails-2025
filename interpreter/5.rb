@@ -154,6 +154,7 @@ else
   assert_raises(/Expected a number, got \)/) { Interpreter.parse(")") }
 
   # Interpreter tests
+  assert_equal(3, Interpreter.call("1 + 2"))
 
   puts "All tests pass"
 end
