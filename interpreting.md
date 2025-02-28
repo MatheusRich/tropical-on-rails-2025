@@ -21,6 +21,8 @@ def self.interpret(ast)
 end
 ```
 
+There you go. We just built a very simple interpreter
+
 ![](./interpreting-ruby-1.8.png)
 
 ## Considerations
