@@ -29,12 +29,18 @@ This is exactly how Ruby <= 1.8 worked. Let's check some examples from the sourc
 
 ```c
 // eval.c
-switch (nd_type(node)) {
-  // ...
-  case NODE_LIT:
-    result = node->nd_lit;
-    break;
-  // ...
+static VALUE
+rb_eval(self, n)
+    VALUE self;
+    NODE *n;
+{
+  switch (nd_type(node)) {
+    // ...
+    case NODE_LIT:
+      result = node->nd_lit;
+      break;
+    // ...
+  }
 }
 ```
 
