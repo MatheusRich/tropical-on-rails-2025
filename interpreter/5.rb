@@ -100,8 +100,7 @@ end
 
 module Interpreter
   def self.call(input)
-    tokens = Tokenizer.call(input)
-    ast = Parser.new(tokens).call
+    ast = parse(input)
     interpret(ast)
   end
 
