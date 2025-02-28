@@ -107,6 +107,22 @@ module Interpreter
 
   def self.interpret(ast)
     case ast[:type]
+    in :number
+    in :binary
+      left = interpret(ast[:left])
+      right = interpret(ast[:right])
+
+      case ast[:operator]
+      when "+"
+        left + right
+      when "-"
+        left - right
+      when "*"
+        left * right
+      when "/"
+        left / right
+      end
+    end
   end
 end
 
