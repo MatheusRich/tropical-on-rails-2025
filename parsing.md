@@ -360,7 +360,7 @@ parse_expression_prefix(/* arguments */) {
 
             if (accept1(parser, PM_TOKEN_PARENTHESIS_LEFT)) {
                 lparen = parser->previous;
-                expression = parse_expression(parser, PM_BINDING_POWER_COMPOSITION, true, false, PM_ERR_DEFINED_EXPRESSION, (uint16_t) (depth + 1));
+                expression = parse_expression(...);
 
                 if (parser->recovering) {
                     rparen = not_provided(parser);
@@ -385,6 +385,43 @@ parse_expression_prefix(/* arguments */) {
             );
         }
     }
+```
+
+```
+case PM_TOKEN_KEYWORD_WHILE: {
+            size_t opening_newline_index = token_newline_index(parser);
+
+            context_push(parser, PM_CONTEXT_LOOP_PREDICATE);
+            pm_do_loop_stack_push(parser, true);
+
+            parser_lex(parser);
+            pm_token_t keyword = parser->previous;
+            pm_node_t *predicate = parse_value_expression(parser, PM_BINDING_POWER_COMPOSITION, true, false, PM_ERR_CONDITIONAL_WHILE_PREDICATE, (uint16_t) (depth + 1));
+
+            pm_do_loop_stack_pop(parser);
+            context_pop(parser);
+
+            pm_token_t do_keyword;
+            if (accept1(parser, PM_TOKEN_KEYWORD_DO_LOOP)) {
+                do_keyword = parser->previous;
+            } else {
+                do_keyword = not_provided(parser);
+                expect2(parser, PM_TOKEN_NEWLINE, PM_TOKEN_SEMICOLON, PM_ERR_CONDITIONAL_WHILE_PREDICATE);
+            }
+
+            pm_statements_node_t *statements = NULL;
+            if (!match1(parser, PM_TOKEN_KEYWORD_END)) {
+                pm_accepts_block_stack_push(parser, true);
+                statements = parse_statements(parser, PM_CONTEXT_WHILE, (uint16_t) (depth + 1));
+                pm_accepts_block_stack_pop(parser);
+                accept2(parser, PM_TOKEN_NEWLINE, PM_TOKEN_SEMICOLON);
+            }
+
+            parser_warn_indentation_mismatch(parser, opening_newline_index, &keyword, false, false);
+            expect1(parser, PM_TOKEN_KEYWORD_END, PM_ERR_WHILE_TERM);
+
+            return (pm_node_t *) pm_while_node_create(parser, &keyword, &do_keyword, &parser->previous, predicate, statements, 0);
+        }
 ```
 
 even the helpers are similar:
