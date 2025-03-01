@@ -348,6 +348,7 @@ Prism, for parsing a `defined?` expression:
 static inline pm_node_t *
 parse_expression_prefix(pm_parser_t *parser, pm_binding_power_t binding_power, bool accepts_command_call, bool accepts_label, pm_diagnostic_id_t diag_id, uint16_t depth) {
     switch (parser->current.type) {
+      // ...
 ```
 
 even the helpers are similar:
