@@ -14,6 +14,15 @@ splits the sentence by space into words. It also pays attention to the accents a
 
 ```rb
 tokens = %w[Ruby : A Programmer ' s Best Friend]
+tokens = %w[
+  Ruby
+  :
+  A
+  Programmer
+  '
+  s
+  Best
+  Friend]
 ```
 
 That happens super fast, and automatically. When it comes to understand its
