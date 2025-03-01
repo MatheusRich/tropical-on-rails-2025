@@ -349,6 +349,42 @@ static inline pm_node_t *
 parse_expression_prefix(pm_parser_t *parser, pm_binding_power_t binding_power, bool accepts_command_call, bool accepts_label, pm_diagnostic_id_t diag_id, uint16_t depth) {
     switch (parser->current.type) {
       // ...
+      case PM_TOKEN_KEYWORD_DEFINED: {
+            parser_lex(parser);
+            pm_token_t keyword = parser->previous;
+
+            pm_token_t lparen;
+            pm_token_t rparen;
+            pm_node_t *expression;
+            context_push(parser, PM_CONTEXT_DEFINED);
+
+            if (accept1(parser, PM_TOKEN_PARENTHESIS_LEFT)) {
+                lparen = parser->previous;
+                expression = parse_expression(parser, PM_BINDING_POWER_COMPOSITION, true, false, PM_ERR_DEFINED_EXPRESSION, (uint16_t) (depth + 1));
+
+                if (parser->recovering) {
+                    rparen = not_provided(parser);
+                } else {
+                    accept1(parser, PM_TOKEN_NEWLINE);
+                    expect1(parser, PM_TOKEN_PARENTHESIS_RIGHT, PM_ERR_EXPECT_RPAREN);
+                    rparen = parser->previous;
+                }
+            } else {
+                lparen = not_provided(parser);
+                rparen = not_provided(parser);
+                expression = parse_expression(parser, PM_BINDING_POWER_DEFINED, false, false, PM_ERR_DEFINED_EXPRESSION, (uint16_t) (depth + 1));
+            }
+
+            context_pop(parser);
+            return (pm_node_t *) pm_defined_node_create(
+                parser,
+                &lparen,
+                expression,
+                &rparen,
+                &PM_LOCATION_TOKEN_VALUE(&keyword)
+            );
+        }
+    }
 ```
 
 even the helpers are similar:
