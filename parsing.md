@@ -346,7 +346,7 @@ Prism, for parsing a `defined?` expression:
 
 ```c
 static inline pm_node_t *
-parse_expression_prefix(...) {
+parse_expression_prefix(/* arguments */) {
     switch (parser->current.type) {
       // ...
       case PM_TOKEN_KEYWORD_DEFINED: {
