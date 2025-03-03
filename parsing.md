@@ -22,7 +22,8 @@ tokens = %w[
   '
   s
   Best
-  Friend]
+  Friend
+]
 ```
 
 That happens super fast, and automatically. When it comes to understand its
