@@ -26,7 +26,7 @@ tokens = %w[
 ]
 ```
 
-That happens super fast, and automatically. When it comes to understand its
+That happens super fast, and automatically. When it comes to understanding its
 meaning, we use the tokens and see their relation and structure.
 
 For example, the colon lets me know that the word "Ruby" is the subject of the
