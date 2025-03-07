@@ -24,6 +24,10 @@ end
 # ```
 
 class Parser
+  def self.call(input)
+    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
+  end
+
   def initialize(tokens)
     @tokens = tokens
   end
@@ -70,8 +74,8 @@ end
 
 module Interpreter
   def self.call(input)
-    tokens = Tokenizer.call(input)
-    Parser.new(tokens).call
+    Tokenizer.call(input)
+      .then { Parser.call(it) }
   end
 end
 
