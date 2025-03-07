@@ -7,9 +7,14 @@ module Tokenizer
 end
 
 class Parser
+  def self.call(tokens)
+    new(tokens).call
+  end
+
   def initialize(tokens)
     @tokens = tokens
   end
+
 
   def call
     program
