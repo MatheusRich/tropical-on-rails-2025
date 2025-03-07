@@ -26,9 +26,7 @@ class Parser
   def number
     token = advance
     raise "EOF" if token.nil?
-    unless token.match?(/\d/)
-      raise "Expected a number, got #{token}"
-    end
+    raise "Expected a number, got #{token}" unless token.match?(/\d/)
 
     {type: :number, value: token.to_i} # only integers!
   end
