@@ -87,10 +87,14 @@ class Parser
 end
 
 module Interpreter
-  def self.call(input)
-    Tokenizer.call(input)
-      .then { Parser.call(it) }
+  def self.call(code)
+    tokenize(code)
+      .then { parse(it) }
   end
+
+  def self.tokenize(code) = Tokenizer.call(code)
+
+  def self.parse(tokens) = Parser.call(tokens)
 end
 
 # assert_equal({type: :number, value: 1}, Interpreter.call("1"))
