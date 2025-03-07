@@ -51,7 +51,7 @@ their meaning (or error if it doesn't make sense).
 ```rb
 def meaning_of = 42
 puts meaning_of(:life, :universe, :everything)
-# wrong number of arguments (given 3, expected 0) (ArgumentError)
+# raises ArgumentError: wrong number of arguments
 ```
 
 ---
