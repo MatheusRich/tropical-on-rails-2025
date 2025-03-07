@@ -109,15 +109,9 @@ module Interpreter
       .then { interpret(it) }
   end
 
-  def self.parse(code)
-    tokens = Tokenizer.call(code)
-    Parser.new(tokens).call
-  end
+  def self.tokenize(code) = Tokenizer.call(code)
 
-  def self.parse(code)
-    tokens = Tokenizer.call(code)
-    Parser.new(tokens).call
-  end
+  def self.parse(tokens) = Parser.new(tokens).call
 
   def self.interpret(ast)
     case ast[:type]
