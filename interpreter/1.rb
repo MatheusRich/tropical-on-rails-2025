@@ -26,7 +26,7 @@ class Parser
   def number
     token = advance
     raise "EOF" if token.nil?
-    unless token.match?(/\A\d\z/)
+    unless token.match?(/\d/)
       raise "Expected a number, got #{token}"
     end
 
