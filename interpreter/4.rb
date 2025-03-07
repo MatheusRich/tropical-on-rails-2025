@@ -103,11 +103,6 @@ class Parser
 end
 
 module Interpreter
-  def self.call(input)
-    Tokenizer.call(input)
-      .then { Parser.call(it) }
-  end
-
   def self.call(code)
     tokenize(code)
       .then { parse(it) }
