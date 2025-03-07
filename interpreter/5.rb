@@ -109,11 +109,6 @@ module Interpreter
       .then { interpret(it) }
   end
 
-  def self.parse(code)
-    tokens = Tokenizer.call(code)
-    Parser.new(tokens).call
-  end
-
   def self.interpret(ast)
     case ast[:type]
     in :number
