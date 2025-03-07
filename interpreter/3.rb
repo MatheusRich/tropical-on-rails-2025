@@ -25,6 +25,10 @@ end
 # NUMBER  → 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 # ```
 class Parser
+  def self.call(input)
+    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
+  end
+
   def initialize(tokens)
     @tokens = tokens
   end
