@@ -51,7 +51,7 @@ module Language
   def self.parse(tokens) = Parser.call(tokens)
 end
 
-assert_equal(true, false)
+assert_equal(true,false)
 assert_equal({type: :number, value: 1}, Language.call("1"))
 assert_raises(/Expected a number, got a/) { Language.call("a") }
 assert_raises(/EOF/) { Language.call("") }
