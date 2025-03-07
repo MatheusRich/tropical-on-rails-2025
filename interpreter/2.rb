@@ -20,7 +20,7 @@ end
 
 # ```grammar
 # program → term
-# term    → NUMBER ( ("+" | "-") NUMBER)*
+# term    → NUMBER (("+" | "-") NUMBER)*
 # ```
 
 class Parser
