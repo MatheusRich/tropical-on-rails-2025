@@ -109,8 +109,8 @@ Now let's write the parser:
 
 ```rb
 class Parser
-  def self.call(input)
-    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
+  def self.call(tokens)
+    new(tokens).call
   end
 
   def initialize(tokens)
@@ -166,8 +166,8 @@ here's the parser
 
 ```rb
 class Parser
-  def self.call(input)
-    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
+  def self.call(tokens)
+    new(tokens).call
   end
 
   def initialize(tokens)
