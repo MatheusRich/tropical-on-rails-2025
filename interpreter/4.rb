@@ -107,6 +107,15 @@ module Interpreter
     Tokenizer.call(input)
       .then { Parser.call(it) }
   end
+
+  def self.call(code)
+    tokenize(code)
+      .then { parse(it) }
+  end
+
+  def self.tokenize(code) = Tokenizer.call(code)
+
+  def self.parse(tokens) = Parser.call(tokens)
 end
 
 if %w[0 no false].include?(ENV["TEST"])
