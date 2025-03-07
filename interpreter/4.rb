@@ -14,7 +14,7 @@ end
 
 module Tokenizer
   def self.call(input)
-    input.split
+    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
   end
 end
 
@@ -129,11 +129,11 @@ else
   )
   assert_equal(
     "(- 1 (+ 2 3))",
-    to_s_expr(Interpreter.call("1 - ( 2 + 3 )"))
+    to_s_expr(Interpreter.call("1 - (2 + 3)"))
   )
   assert_raises("EOF") { Interpreter.call("1 +") }
   assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
-  assert_raises(/Expected a closing parenthesis/) { Interpreter.call("( 1 + 2") }
+  assert_raises(/Expected a closing parenthesis/) { Interpreter.call("(1 + 2") }
   assert_raises(/Expected a number, got \)/) { Interpreter.call(")") }
 
   puts "All tests pass"

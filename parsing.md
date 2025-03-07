@@ -99,7 +99,7 @@ Let's to write a parser for that. To keep thing simple, I'll skip the tokenizer 
 ```rb
 module Tokenizer
   def self.call(input)
-    input.split
+    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
   end
 end
 ```

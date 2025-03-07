@@ -14,7 +14,7 @@ end
 
 module Tokenizer
   def self.call(input)
-    input.split
+    input.scan(%r{[A-Za-z0-9]+|[+\-*/=()]})
   end
 end
 
