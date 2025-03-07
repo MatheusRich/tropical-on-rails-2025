@@ -86,7 +86,7 @@ class Parser
   end
 end
 
-module Interpreter
+module Language
   def self.call(code)
     tokenize(code)
       .then { parse(it) }
@@ -97,23 +97,23 @@ module Interpreter
   def self.parse(tokens) = Parser.call(tokens)
 end
 
-# assert_equal({type: :number, value: 1}, Interpreter.call("1"))
-# assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
+# assert_equal({type: :number, value: 1}, Language.call("1"))
+# assert_raises(/Expected a number, got a/) { Language.call("a") }
 
 assert_equal(
   "(+ 1 2)",
-  to_s_expr(Interpreter.call("1 + 2"))
+  to_s_expr(Language.call("1 + 2"))
 )
 assert_equal(
   "(+ (- 1 2) 3)",
-  to_s_expr(Interpreter.call("1 - 2 + 3"))
+  to_s_expr(Language.call("1 - 2 + 3"))
 )
 assert_equal(
   "(- 1 (/ (* 2 3) 4))",
-  to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
+  to_s_expr(Language.call("1 - 2 * 3 / 4"))
 )
-assert_raises("EOF") { Interpreter.call("1 +") }
-assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
-assert_raises("EOF") { Interpreter.call("1 +") }
+assert_raises("EOF") { Language.call("1 +") }
+assert_raises(/Expected a number, got a/) { Language.call("a") }
+assert_raises("EOF") { Language.call("1 +") }
 
 puts "All tests pass"

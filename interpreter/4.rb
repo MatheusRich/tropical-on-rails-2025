@@ -102,7 +102,7 @@ class Parser
   end
 end
 
-module Interpreter
+module Language
   def self.call(code)
     tokenize(code)
       .then { parse(it) }
@@ -118,31 +118,31 @@ if %w[0 no false].include?(ENV["TEST"])
     print "> "
     input = gets
     break if input.nil?
-    p Interpreter.call(input)
+    p Language.call(input)
   rescue => e
     puts "#{e.class}: #{e.message}"
   end
 else
   assert_equal(
     "(+ 1 2)",
-    to_s_expr(Interpreter.call("1 + 2"))
+    to_s_expr(Language.call("1 + 2"))
   )
   assert_equal(
     "(+ (- 1 2) 3)",
-    to_s_expr(Interpreter.call("1 - 2 + 3"))
+    to_s_expr(Language.call("1 - 2 + 3"))
   )
   assert_equal(
     "(- 1 (/ (* 2 3) 4))",
-    to_s_expr(Interpreter.call("1 - 2 * 3 / 4"))
+    to_s_expr(Language.call("1 - 2 * 3 / 4"))
   )
   assert_equal(
     "(- 1 (+ 2 3))",
-    to_s_expr(Interpreter.call("1 - (2 + 3)"))
+    to_s_expr(Language.call("1 - (2 + 3)"))
   )
-  assert_raises("EOF") { Interpreter.call("1 +") }
-  assert_raises(/Expected a number, got a/) { Interpreter.call("a") }
-  assert_raises(/Expected a closing parenthesis/) { Interpreter.call("(1 + 2") }
-  assert_raises(/Expected a number, got \)/) { Interpreter.call(")") }
+  assert_raises("EOF") { Language.call("1 +") }
+  assert_raises(/Expected a number, got a/) { Language.call("a") }
+  assert_raises(/Expected a closing parenthesis/) { Language.call("(1 + 2") }
+  assert_raises(/Expected a number, got \)/) { Language.call(")") }
 
   puts "All tests pass"
 end

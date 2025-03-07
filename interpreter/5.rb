@@ -102,7 +102,7 @@ class Parser
   end
 end
 
-module Interpreter
+module Language
   def self.call(code)
     tokenize(code)
       .then { parse(it) }
@@ -131,7 +131,7 @@ if %w[0 no false].include?(ENV["TEST"])
     print "> "
     input = gets
     break if input.nil?
-    p Interpreter.call(input)
+    p Language.call(input)
   rescue => e
     puts "#{e.class}: #{e.message}"
   end
@@ -139,30 +139,30 @@ else
   # Parser tests
   assert_equal(
     "(+ 1 2)",
-    to_s_expr(Interpreter.parse(Interpreter.tokenize("1 + 2")))
+    to_s_expr(Language.parse(Language.tokenize("1 + 2")))
   )
   assert_equal(
     "(+ (- 1 2) 3)",
-    to_s_expr(Interpreter.parse(Interpreter.tokenize("1 - 2 + 3")))
+    to_s_expr(Language.parse(Language.tokenize("1 - 2 + 3")))
   )
   assert_equal(
     "(- 1 (/ (* 2 3) 4))",
-    to_s_expr(Interpreter.parse(Interpreter.tokenize("1 - 2 * 3 / 4")))
+    to_s_expr(Language.parse(Language.tokenize("1 - 2 * 3 / 4")))
   )
   assert_equal(
     "(- 1 (+ 2 3))",
-    to_s_expr(Interpreter.parse(Interpreter.tokenize("1 - (2 + 3)")))
+    to_s_expr(Language.parse(Language.tokenize("1 - (2 + 3)")))
   )
-  assert_raises("EOF") { Interpreter.parse(Interpreter.tokenize("1 +") )}
-  assert_raises(/Expected a number, got a/) { Interpreter.parse(Interpreter.tokenize("a") )}
-  assert_raises(/Expected a closing parenthesis/) { Interpreter.parse(Interpreter.tokenize("(1 + 2") )}
-  assert_raises(/Expected a number, got \)/) { Interpreter.parse(Interpreter.tokenize(")") )}
+  assert_raises("EOF") { Language.parse(Language.tokenize("1 +") )}
+  assert_raises(/Expected a number, got a/) { Language.parse(Language.tokenize("a") )}
+  assert_raises(/Expected a closing parenthesis/) { Language.parse(Language.tokenize("(1 + 2") )}
+  assert_raises(/Expected a number, got \)/) { Language.parse(Language.tokenize(")") )}
 
-  # Interpreter tests
-  assert_equal(3, Interpreter.call("1 + 2"))
-  assert_equal(-1, Interpreter.call("1 - 2"))
-  assert_equal(7, Interpreter.call("1 + 2 * 3"))
-  assert_equal(4, Interpreter.call("8 / 2 + 0"))
+  # Language tests
+  assert_equal(3, Language.call("1 + 2"))
+  assert_equal(-1, Language.call("1 - 2"))
+  assert_equal(7, Language.call("1 + 2 * 3"))
+  assert_equal(4, Language.call("8 / 2 + 0"))
 
   puts "All tests pass"
 end
