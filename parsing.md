@@ -128,7 +128,7 @@ class Parser
   def number
     token = advance
     raise "EOF" if token.nil?
-    raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
+    raise "Expected a number, got #{token}" unless token.match?(/\d/)
 
     {type: :number, value: token.to_i}
   end
@@ -198,7 +198,7 @@ class Parser
   def number
     token = advance
     raise "EOF" if token.nil?
-    raise "Expected a number, got #{token}" unless token.match?(/\A\d\z/)
+    raise "Expected a number, got #{token}" unless token.match?(/\d/)
 
     {type: :number, value: token.to_i}
   end
