@@ -15,7 +15,6 @@ class Parser
     @tokens = tokens
   end
 
-
   def call
     program
   end
