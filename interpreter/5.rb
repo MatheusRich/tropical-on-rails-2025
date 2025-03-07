@@ -111,7 +111,7 @@ module Interpreter
 
   def self.tokenize(code) = Tokenizer.call(code)
 
-  def self.parse(tokens) = Parser.new(tokens).call
+  def self.parse(tokens) = Parser.call(tokens)
 
   def self.interpret(ast)
     case ast[:type]
