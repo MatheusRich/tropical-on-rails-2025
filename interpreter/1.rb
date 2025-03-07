@@ -41,7 +41,7 @@ end
 module Interpreter
   def self.call(input)
     tokens = Tokenizer.call(input)
-    Parser.new(tokens).call
+    Parser.call(tokens)
   end
 end
 
