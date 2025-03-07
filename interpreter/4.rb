@@ -70,7 +70,7 @@ class Parser
   end
 
   def primary
-    if matches?(/\A\d\z/)
+    if matches?(/\d/)
       number
     elsif matches?("(")
       token = advance # consume the "("
