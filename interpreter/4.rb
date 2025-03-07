@@ -136,6 +136,10 @@ else
     to_s_expr(Language.call("1 - 2 * 3 / 4"))
   )
   assert_equal(
+
+    to_s_expr(Language.call("()"))
+  )
+  assert_equal(
     "(- 1 (+ 2 3))",
     to_s_expr(Language.call("1 - (2 + 3)"))
   )
