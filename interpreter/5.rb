@@ -104,7 +104,9 @@ end
 
 module Interpreter
   def self.call(code)
-    parse(code).then { interpret(it) }
+    Tokenizer.call(input)
+      .then { Parser.call(it) }
+      .then { interpret(it) }
   end
 
   def self.parse(code)
