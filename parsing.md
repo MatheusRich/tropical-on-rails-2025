@@ -410,7 +410,7 @@ parse_expression_prefix(/* arguments */) {
     }
 ```
 
-```
+```c
 case PM_TOKEN_KEYWORD_WHILE: {
             size_t opening_newline_index = token_newline_index(parser);
 

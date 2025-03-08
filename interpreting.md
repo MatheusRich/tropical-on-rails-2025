@@ -116,8 +116,57 @@ and it won't print anything. we only evaluate the right side if the left side is
 
 # Compiling
 
+The talk could have ended in the last section, but that interpreter has a big
+problem: it's very slow. Walking the AST like that is very slow because the
+information is spread all over the place. We need to jump around the memory
+a lot to get the information we need.
+
+![](./ast.png)
+
+Modern CPUs are much faster than they can pull data from memory. So, they
+optimize that by having caches. If everything they need is in the cache, they
+can run much faster. Like, 100x faster.
+
+So, we need to optimze our memory layout to make it easier for the CPU to pull
+the data it needs. We'll do that by flattening the AST into an array. This array
+will be a series of instructions that a VM can run. This is called bytecode.
+
+![](./ast-to-bytecode.png)
+
 - How AST becomes bytecode
+https://www.youtube.com/watch?v=6loKD2LXxbc&t=1045s
 https://github.com/MatheusRich/ruby/blob/7178593558080ca529abb61ef27038236ab2687d/prism_compile.c#L242
+- https://craftinginterpreters.com/jumping-back-and-forth.html#logical-operators
+
+```c
+static inline void
+pm_compile_and_node(rb_iseq_t *iseq, const pm_and_node_t *node, const pm_node_location_t *location, LINK_ANCHOR *const ret, bool popped, pm_scope_node_t *scope_node)
+{
+    LABEL *end_label = NEW_LABEL(location->line);
+
+    PM_COMPILE_NOT_POPPED(node->left);
+    if (!popped) PUSH_INSN(ret, *location, dup);
+    PUSH_INSNL(ret, *location, branchunless, end_label);
+
+    if (!popped) PUSH_INSN(ret, *location, pop);
+    PM_COMPILE(node->right);
+    PUSH_LABEL(ret, end_label);
+}
+
+static void
+pm_compile_node(rb_iseq_t *iseq, const pm_node_t *node, LINK_ANCHOR *const ret, bool popped, pm_scope_node_t *scope_node)
+{
+  // ...
+  switch (PM_NODE_TYPE(node)) {
+    // ...
+    case PM_AND_NODE:
+        // a and b
+        // ^^^^^^^
+        pm_compile_and_node(iseq, (const pm_and_node_t *) node, &location, ret, popped, scope_node);
+        return;
+  }
+}
+```
 
 ![](./interpreting-ruby-1.9.png)
 
