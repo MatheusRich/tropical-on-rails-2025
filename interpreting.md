@@ -81,11 +81,7 @@ let's check boolean operators like `&&`:
 
 ```c
 // eval.c
-static VALUE
-rb_eval(self, n)
-    VALUE self;
-    NODE *node;
-{
+static VALUE rb_eval(VALUE self, NODE *node) {
   again:
     switch (nd_type(node)) {
       // ...
@@ -102,7 +98,7 @@ rb_eval(self, n)
 This is why you can do:
 
 ```rb
-false && puts("Hello")
+false && puts(1 + "1")
 ```
 
 and it won't print anything. we only evaluate the right side if the left side is truthy.
