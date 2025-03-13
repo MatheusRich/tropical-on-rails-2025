@@ -85,9 +85,6 @@ module Language
   def self.parse(tokens) = Parser.call(tokens)
 end
 
-binding.irb
-
-=> ["1", "-", "2", "+", "3"]
 assert_equal(
   "(+ 1 2)",
   to_s_expr(Language.call("1 + 2"))
