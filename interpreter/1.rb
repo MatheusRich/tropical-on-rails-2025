@@ -55,4 +55,4 @@ assert_equal({type: :number, value: 1}, Language.call("1"))
 assert_raises(/Expected a number, got a/) { Language.call("a") }
 assert_raises(/EOF/) { Language.call("") }
 
-puts "All tests pass"
+puts "✅ All tests pass"

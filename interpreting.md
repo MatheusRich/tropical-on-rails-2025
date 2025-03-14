@@ -169,3 +169,11 @@ pm_compile_node(rb_iseq_t *iseq, const pm_node_t *node, LINK_ANCHOR *const ret, 
 # Interpreting bytecode
 
 - Executing bytecode
+
+## Fast-path optimizations
+
+- We generate less intructions.
+- Less instructions to run is faster
+- More instructions can fit in the cache (faster again)
+
+- 20% faster with a simple fast-path optimization

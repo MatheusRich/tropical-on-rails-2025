@@ -164,5 +164,5 @@ else
   assert_equal(7, Language.call("1 + 2 * 3"))
   assert_equal(4, Language.call("8 / 2 + 0"))
 
-  puts "All tests pass"
+  puts "✅ All tests pass"
 end

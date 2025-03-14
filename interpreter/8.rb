@@ -102,6 +102,26 @@ class Parser
   end
 end
 
+class Parser2 < Parser
+
+  # def factor
+  #   expr = primary
+
+  #   while matches?("*", "/")
+  #     operator = advance
+  #     expr2 = primary
+
+  #     if operator == "+" && expr[:type] == :number && expr2[:type] == :number
+  #       expr = {type: :number, value: expr[:value] + expr2[:value]}
+  #     else
+  #       expr = {type: :binary, operator:, left: expr, right: expr2}
+  #     end
+  #   end
+
+  #   expr
+  # end
+end
+
 module Compiler
   def self.call(ast)
     instructions = []
@@ -139,6 +159,47 @@ module VM
   end
 end
 
+module Compiler2
+  def self.call(ast)
+    instructions = []
+
+    case ast[:type]
+    in :number
+      instructions += [[:putobject, ast[:value]]]
+    in :binary
+      if ast[:operator] == "+" && ast[:left][:type] == :number && ast[:right][:type] == :number
+        instructions += [[:putobject, ast[:left][:value] + ast[:right][:value]]]
+      else
+      instructions += call(ast[:left])
+      instructions += call(ast[:right])
+      instructions += [[:send, ast[:operator]]]
+    end
+    end
+
+    instructions
+  end
+end
+
+module VM2
+  def self.call(instructions)
+    stack = []
+
+    instructions.each do |instruction|
+      case instruction
+      in [:putobject, value]
+        stack.push(value)
+      in [:send, operator]
+        right = stack.pop
+        left = stack.pop
+        result = left.send(operator, right)
+        stack.push(result)
+      end
+    end
+
+    stack.pop
+  end
+end
+
 module Language
   def self.call(code)
     tokenize(code)
@@ -151,6 +212,20 @@ module Language
   def self.parse(tokens)  = Parser.call(tokens)
   def self.compile(ast)   = Compiler.call(ast)
   def self.run(bytecode)  = VM.call(bytecode)
+end
+
+module Language2
+  def self.call(code)
+    tokenize(code)
+      .then { parse(it) }
+      .then { compile(it) }
+      .then { run(it) }
+  end
+
+  def self.tokenize(code) = Tokenizer.call(code)
+  def self.parse(tokens)  = Parser2.call(tokens)
+  def self.compile(ast)   = Compiler2.call(ast)
+  def self.run(bytecode)  = VM2.call(bytecode)
 end
 
 if %w[0 no false].include?(ENV["TEST"])
@@ -166,33 +241,57 @@ else
   # Parser tests
   assert_equal(
     "(+ 1 2)",
-    to_s_expr(Language.parse(Language.tokenize("1 + 2")))
+    to_s_expr(Language2.parse(Language2.tokenize("1 + 2")))
   )
   assert_equal(
     "(+ (- 1 2) 3)",
-    to_s_expr(Language.parse(Language.tokenize("1 - 2 + 3")))
+    to_s_expr(Language2.parse(Language2.tokenize("1 - 2 + 3")))
   )
   assert_equal(
     "(- 1 (/ (* 2 3) 4))",
-    to_s_expr(Language.parse(Language.tokenize("1 - 2 * 3 / 4")))
+    to_s_expr(Language2.parse(Language2.tokenize("1 - 2 * 3 / 4")))
   )
   assert_equal(
     "(- 1 (+ 2 3))",
-    to_s_expr(Language.parse(Language.tokenize("1 - (2 + 3)")))
+    to_s_expr(Language2.parse(Language2.tokenize("1 - (2 + 3)")))
   )
-  assert_raises("EOF") { Language.parse(Language.tokenize("1 +") )}
-  assert_raises(/Expected a number, got a/) { Language.parse(Language.tokenize("a") )}
-  assert_raises(/Expected a closing parenthesis/) { Language.parse(Language.tokenize("(1 + 2") )}
-  assert_raises(/Expected a number, got \)/) { Language.parse(Language.tokenize(")") )}
+  assert_raises("EOF") { Language2.parse(Language2.tokenize("1 +") )}
+  assert_raises(/Expected a number, got a/) { Language2.parse(Language2.tokenize("a") )}
+  assert_raises(/Expected a closing parenthesis/) { Language2.parse(Language2.tokenize("(1 + 2") )}
+  assert_raises(/Expected a number, got \)/) { Language2.parse(Language2.tokenize(")") )}
 
   # VM instructions tests
-  assert_equal([[:putobject, 1]], Language.compile(Language.parse(Language.tokenize("1"))))
-  assert_equal([[:putobject, 1], [:putobject, 2], [:send, "+"]], Language.compile(Language.parse(Language.tokenize("1 + 2"))))
+  assert_equal([[:putobject, 1]], Language2.compile(Language2.parse(Language2.tokenize("1"))))
+  assert_equal([[:putobject, 3]], Language2.compile(Language2.parse(Language2.tokenize("1 + 2"))))
 
-  # Language tests
-  assert_equal(-1, Language.call("1 - 2"))
-  assert_equal(7, Language.call("1 + 2 * 3"))
-  assert_equal(3, Language.call("8 / 3 + 1"))
+  # Language2 tests
+  assert_equal(-1, Language2.call("1 - 2"))
+  assert_equal(7, Language2.call("1 + 2 * 3"))
+  assert_equal(3, Language2.call("8 / 3 + 1"))
 
   puts "✅ All tests pass"
+
+  puts "🔬 Benchmarking..."
+
+  require "benchable"
+
+  # Benchable.bench(:ips, time: 10) do
+  #   bench "Normal dispatch" do
+  #     Language.call("1 + 2")
+  #   end
+
+  #   bench "Fast-path" do
+  #     Language2.call("1 + 2")
+  #   end
+  # end
+
+  Benchable.bench(:ips, time: 10) do
+    bench "Slow path" do
+      Language2.call("1 - 2")
+    end
+
+    bench "Fast-path" do
+      Language2.call("1 + 2")
+    end
+  end
 end

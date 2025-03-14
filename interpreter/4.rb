@@ -144,5 +144,5 @@ else
   assert_raises(/Expected a closing parenthesis/) { Language.call("(1 + 2") }
   assert_raises(/Expected a number, got \)/) { Language.call(")") }
 
-  puts "All tests pass"
+  puts "✅ All tests pass"
 end
