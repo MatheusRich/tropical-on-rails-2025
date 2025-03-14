@@ -170,6 +170,12 @@ pm_compile_node(rb_iseq_t *iseq, const pm_node_t *node, LINK_ANCHOR *const ret, 
 
 - Executing bytecode
 
+## You can see the bytecode
+
+```sh
+ruby -e "1 + 2" --dump=insns
+```
+
 ## Fast-path optimizations
 
 - We generate less intructions.
