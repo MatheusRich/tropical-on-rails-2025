@@ -183,3 +183,32 @@ ruby -e "1 + 2" --dump=insns
 - More instructions can fit in the cache (faster again)
 
 - 20% faster with a simple fast-path optimization
+
+## rewriting c in ruby
+
+```c
+static VALUE
+int_dotimes(VALUE num)
+{
+    RETURN_SIZED_ENUMERATOR(num, 0, 0, int_dotimes_size);
+
+    if (FIXNUM_P(num)) {
+        long i, end;
+
+        end = FIX2LONG(num);
+        for (i=0; i<end; i++) {
+            rb_yield_1(LONG2FIX(i));
+        }
+    }
+    else {
+        VALUE i = INT2FIX(0);
+
+        for (;;) {
+            if (!RTEST(int_le(i, num))) break;
+            rb_yield(i);
+            i = rb_int_plus(i, INT2FIX(1));
+        }
+    }
+    return num;
+}
+```

@@ -470,7 +470,7 @@ You might be thinking "I'm not writing a compiler, why should I care about
 parsers?". But in reality, we deal with parsers all the time. Many of the tools
 we use on a daily basis depend on parsers:
 
-- irb
+<!-- - irb -->
 - Rails
   - to get file and line numbers for a specific test (https://github.com/rails/rails/pull/51006/files)
 - Rubocop
