@@ -1,9 +1,9 @@
 require 'mini_magick'
 
 AVATAR_DIR = 'avatars'
-OUTPUT_FILE = 'collage.jpg'
+OUTPUT_FILE = 'collage.png'
 TARGET_ASPECT = 16.0 / 9.0
-IMAGE_SIZE = 64
+IMAGE_SIZE = 420
 
 avatar_files = Dir[File.join(AVATAR_DIR, '*')]
 count = avatar_files.size
@@ -21,7 +21,6 @@ rows = (count.to_f / columns).ceil
 collage_width = columns * IMAGE_SIZE
 collage_height = rows * IMAGE_SIZE
 
-# Corrected montage call with proper resize and cropping options
 montage = MiniMagick::Tool::Montage.new
 avatar_files.each { |f| montage << f }
 
@@ -31,7 +30,8 @@ montage.gravity 'center'
 montage.resize "#{IMAGE_SIZE}x#{IMAGE_SIZE}^"
 montage.extent "#{IMAGE_SIZE}x#{IMAGE_SIZE}"
 montage.tile "#{columns}x#{rows}"
-montage.background 'white'
+montage.background 'none'
+# montage.background '#fbfbfb'
 montage << OUTPUT_FILE
 
 montage.call
