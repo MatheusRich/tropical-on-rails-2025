@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
+    benchmark (0.4.1)
     bigdecimal (3.1.9)
     csv (3.3.3)
     faraday (2.12.2)
@@ -17,6 +18,9 @@ GEM
       multi_xml (>= 0.5.2)
     json (2.10.2)
     logger (1.6.6)
+    mini_magick (5.2.0)
+      benchmark
+      logger
     mini_mime (1.1.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -37,6 +41,7 @@ PLATFORMS
 
 DEPENDENCIES
   httparty
+  mini_magick
   octokit
 
 BUNDLED WITH
